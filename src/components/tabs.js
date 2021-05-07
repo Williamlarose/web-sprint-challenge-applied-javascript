@@ -1,4 +1,33 @@
+import axios from 'axios'
 const Tabs = (topics) => {
+
+  const Topics = document.createElement('div')
+  const java = document.createElement('div')
+  const boot = document.createElement('div')
+  const tech = document.createElement('div')
+  const jqu = document.createElement('div')
+  const node = document.createElement('div')
+
+  Topics.classList.add('topics')
+  java.classList.add('tab')
+  boot.classList.add('tab')
+  tech.classList.add('tab')
+  jqu.classList.add('tab')
+  node.classList.add('tab')
+
+  Topics.appendChild(java)
+  Topics.appendChild(boot)
+  Topics.appendChild(tech)
+  Topics.appendChild(jqu)
+  Topics.appendChild(node)
+
+  java.textContent = topics.topics[0]
+  boot.textContent = topics.topics[1]
+  tech.textContent = topics.topics[2]
+  jqu.textContent = topics.topics[3]
+  node.textContent = topics.topics[4]
+
+  return Topics
   // TASK 3
   // ---------------------
   // Implement this function which takes an array of strings ("topics") as its only argument.
@@ -14,8 +43,18 @@ const Tabs = (topics) => {
   // </div>
   //
 }
+console.log(axios.get(`https://lambda-times-api.herokuapp.com/topics`))
+const tabhead = document.querySelector('div.tabs-container')
+
 
 const tabsAppender = (selector) => {
+
+  axios.get(`https://lambda-times-api.herokuapp.com/topics`)
+    .then(function (yo) {
+      const tab = Tabs(yo.data)
+      tabhead.appendChild(tab)
+    }
+    )
   // TASK 4
   // ---------------------
   // Implement this function which takes a css selector as its only argument.

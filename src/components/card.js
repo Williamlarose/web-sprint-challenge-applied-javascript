@@ -1,4 +1,31 @@
+import axios from 'axios'
 const Card = (article) => {
+  const card = document.createElement('div')
+  const headlin = document.createElement('div')
+  const author = document.createElement('div')
+  const imgcont = document.createElement('div')
+  const img = document.createElement('img')
+  const span = document.createElement('span')
+
+  card.classList.add('card')
+  headlin.classList.add('headline')
+  author.classList.add('author')
+  imgcont.classList.add('img-container')
+
+  card.appendChild(headlin)
+  card.appendChild(author)
+  author.appendChild(imgcont)
+  author.appendChild(span)
+  imgcont.appendChild(img)
+
+  headlin.textContent = article.headline
+  span.textContent = article.authorName
+  img.textContent = article.authorPhoto
+
+
+  return card
+
+
   // TASK 5
   // ---------------------
   // Implement this function, which should return the markup you see below.
@@ -18,8 +45,21 @@ const Card = (article) => {
   // </div>
   //
 }
-
+const cardhead = document.querySelector('div.cards-container')
+console.log(axios.get(`https://lambda-times-api.herokuapp.com/articles`))
 const cardAppender = (selector) => {
+  axios.get(`https://lambda-times-api.herokuapp.com/articles`)
+    .then(function (yo) {
+      const art = yo.data.articles.bootstrap
+      console.log('hey', art)
+
+      const pro = Card(art)
+      console.log('yo', art.bootstrap)
+      cardhead.appendChild(pro)
+    });
+
+
+
   // TASK 6
   // ---------------------
   // Implement this function that takes a css selector as its only argument.
