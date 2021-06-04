@@ -44,15 +44,15 @@ const Tabs = (topics) => {
   //
 }
 console.log(axios.get(`https://lambda-times-api.herokuapp.com/topics`))
-const tabhead = document.querySelector('div.tabs-container')
+
 
 
 const tabsAppender = (selector) => {
-
+  selector = document.querySelector('div.tabs-container')
   axios.get(`https://lambda-times-api.herokuapp.com/topics`)
     .then(function (yo) {
       const tab = Tabs(yo.data)
-      tabhead.appendChild(tab)
+      selector.appendChild(tab)
     }
     )
   // TASK 4

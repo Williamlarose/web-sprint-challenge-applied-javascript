@@ -20,7 +20,7 @@ const Card = (article) => {
 
   headlin.textContent = article.headline
   span.textContent = article.authorName
-  img.textContent = article.authorPhoto
+  img.src = article.authorPhoto
 
 
   return card
@@ -50,12 +50,32 @@ console.log(axios.get(`https://lambda-times-api.herokuapp.com/articles`))
 const cardAppender = (selector) => {
   axios.get(`https://lambda-times-api.herokuapp.com/articles`)
     .then(function (yo) {
-      const art = yo.data.articles.bootstrap
-      console.log('hey', art)
+      const boot = yo.data.articles.bootstrap
+      const java = yo.data.articles.javascript
+      const tech = yo.data.articles.technology
+      const jq = yo.data.articles.jquery
+      const node = yo.data.articles.node
+      node.map(pro => {
+        const nodeDiv = Card(pro)
+        cardhead.appendChild(nodeDiv)
+      })
+      jq.map(pro => {
+        const jqDiv = Card(pro)
+        cardhead.appendChild(jqDiv)
+      })
+      tech.map(pro => {
+        const techDiv = Card(pro)
+        cardhead.appendChild(techDiv)
+      })
+      java.map(pro => {
+        const javaDiv = Card(pro)
+        cardhead.appendChild(javaDiv)
+      })
 
-      const pro = Card(art)
-      console.log('yo', art.bootstrap)
-      cardhead.appendChild(pro)
+      boot.map(pro => {
+        const hey = Card(pro)
+        cardhead.appendChild(hey)
+      })
     });
 
 

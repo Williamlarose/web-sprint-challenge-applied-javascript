@@ -34,7 +34,7 @@ const header = document.querySelector('div.header-container')
 
 const headerAppender = (selector) => {
 
-  const com = Header('Lambada Times', 'May 7 2021', 'Hot')
+  const com = Header('Lambada Times', 'june 7 2021', 'Hot')
   header.appendChild(com)
 
   // TASK 2
